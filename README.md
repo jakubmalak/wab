@@ -10,3 +10,8 @@
 
 - install all dependencies - `pdm install` 
 - nainstalovat python extension, spustin python a v dalsim terminalu  spustin fastApi `uvicorn main:app --reload`
+---
+- create dockerfile
+- napsat do konzole - `docker pull python:3.11`
+- buildne image se jmenenm wab v aktualnim adresari - `docker build -t wab .`
+- spustime image - `docker run wab`
