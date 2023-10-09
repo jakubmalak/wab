@@ -7,3 +7,6 @@
 
 - REST Framework: [FastAPI](https://fastapi.tiangolo.com/)
  - add FastAPI - `pdm add fastapi`
+
+- install all dependencies - `pdm install` 
+- nainstalovat python extension, spustin python a v dalsim terminalu  spustin fastApi `uvicorn main:app --reload`
