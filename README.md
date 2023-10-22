@@ -15,3 +15,6 @@
 - napsat do konzole - `docker pull python:3.11`
 - buildne image se jmenenm wab v aktualnim adresari - `docker build -t wab .`
 - spustime image - `docker run wab`
+---
+- `cd src`
+- `uvicorn main:app`
