@@ -1,0 +1,14 @@
+[project]
+name = ""
+version = ""
+description = ""
+authors = [
+    {name = "Jakub Malák", email = "xmalak@mendelu.cz"},
+]
+dependencies = [
+    "fastapi>=0.105.0",
+    "uvicorn[standard]>=0.25.0",
+]
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
