@@ -1,6 +1,6 @@
 import random
 
-from model.Movie import Movie
+from src.model.Movie import Movie
 
 
 # List of 20 movie instances with example data

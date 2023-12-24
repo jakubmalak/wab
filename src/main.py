@@ -1,8 +1,8 @@
 from typing import List
 
 from fastapi import FastAPI, HTTPException, Body, status
-from model.Movie import Movie
-from mock_data import MoviesMock
+from src.model.Movie import Movie
+from src.mock_data import MoviesMock
 
 app = FastAPI()
 
