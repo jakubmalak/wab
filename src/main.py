@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import  FastAPI
+from fastapi import FastAPI, HTTPException, Body, status
 from model.Movie import Movie
 from mock_data import MoviesMock
 
@@ -28,3 +28,39 @@ def get_movie():
 def get_movies():
     # Return the list of all movies
     return MoviesMock.MockMovieList.movies_list
+
+
+@app.get("/movie/{movie_id}", response_model=Movie)
+def get_movie_by_id(movie_id: int):
+    # Search for the movie with the given ID
+    movie = next((movie for movie in MoviesMock.MockMovieList.movies_list if movie.id == movie_id), None)
+
+    # If the movie is not found, return a 404 error
+    if movie is None:
+        raise HTTPException(status_code=404, detail=f"Movie with id {movie_id} not found")
+
+    return movie
+
+
+@app.delete("/movie/{movie_id}", response_model=Movie)
+def delete_movie_by_id(movie_id: int):
+    # Search for the movie with the given ID and remove it
+    movie_index = next((i for i, movie in enumerate(MoviesMock.MockMovieList.movies_list) if movie.id == movie_id), None)
+
+    if movie_index is None:
+        raise HTTPException(status_code=404, detail=f"Movie with id {movie_id} not found")
+
+    # Remove the movie from the list
+    deleted_movie = MoviesMock.MockMovieList.movies_list.pop(movie_index)
+    return deleted_movie
+
+
+@app.post("/movie", response_model=Movie, status_code=status.HTTP_201_CREATED)
+def add_movie(movie: Movie = Body(...)):
+    # Check if a movie with the same ID already exists
+    if any(m.id == movie.id for m in MoviesMock.MockMovieList.movies_list):
+        raise HTTPException(status_code=400, detail=f"Movie with id {movie.id} already exists")
+
+    # Add the new movie to the list
+    MoviesMock.MockMovieList.movies_list.append(movie)
+    return movie
